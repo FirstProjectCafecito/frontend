@@ -25,27 +25,22 @@ import {Products} from '../../../SearchEngineBasic/models/products.entity';
 })
 export class NavbarComponent implements AfterViewInit {
   @ViewChild('searchInput') inputSearch?: ElementRef;
-
+  producstSearched:Products[]=[];
   productService: ProductsService = inject(ProductsService);
 
   ngAfterViewInit(): void {
-    fromEvent<any>(this.inputSearch?.nativeElement, 'keyup')
+    fromEvent<any>(this.inputSearch?.nativeElement,'keyup')
       .pipe(
-        map((event) => event.target.value),
-        filter((text) => text.trim().length > 0),
+        map((event)=> event.target.value),
+        filter((text)=> text.trim().length > 0),
         debounceTime(500),
-        distinctUntilChanged(), // Emitir solo si el texto cambia
-        switchMap((text) => {
+        distinctUntilChanged(),
+        switchMap((text)=>{
           return this.productService.findProductsSearched(text);
         })
-      )
-      .subscribe({
-        next: (data) => {
-          console.log(data[0], 'hola');
-        },
-        error: (err) => {
-          console.error('Error en la búsqueda:', err);
-        }
-      });
+      ).subscribe(data=>{
+        this.producstSearched=data.content;
+        console.log(this.producstSearched);
+    })
   }
 }

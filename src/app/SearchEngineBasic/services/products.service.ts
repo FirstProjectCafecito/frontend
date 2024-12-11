@@ -11,8 +11,6 @@ export class ProductsService extends BaseService<Products> {
 
   private products: Products[]=[];
 
-  private _productsSearched:BehaviorSubject<Products[]> = new BehaviorSubject<Products[]>([]);
-
   private _products: BehaviorSubject<Products[]> = new BehaviorSubject<Products[]>([]);
 
   private _pageableData : BehaviorSubject<any> = new BehaviorSubject<any>([]);
@@ -32,9 +30,6 @@ export class ProductsService extends BaseService<Products> {
   }
   get getPageableData(){
     return this._pageableData.asObservable();
-  }
-  get getSearchedProducts(){
-    return this._productsSearched.asObservable();
   }
 
   updateData(){
@@ -82,7 +77,7 @@ export class ProductsService extends BaseService<Products> {
 
   }
 
-  findProductsSearched(text: string): Observable<Products[]> {
+  findProductsSearched(text: string): Observable<any> {
     return this.http.get<any>(`${this.basePath}${this.resourceEndpoint}/search/${text}`);
   }
   //Metodo para obtener todos los datos del pageable
