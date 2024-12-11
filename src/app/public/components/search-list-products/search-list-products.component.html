@@ -1,0 +1,10 @@
+<mat-list *ngIf="productsSearch.length > 0;else noResults">
+  <mat-list-item *ngFor="let product of productsSearch">
+    <mat-icon matListItemIcon>inventory_2</mat-icon>
+    <div matListItemTitle>{{product.name}}</div>
+    <div matListItemLine>{{product.brand}}</div>
+  </mat-list-item>
+</mat-list>
+<ng-template #noResults>
+  <p>No se encontraron productos.</p>
+</ng-template>

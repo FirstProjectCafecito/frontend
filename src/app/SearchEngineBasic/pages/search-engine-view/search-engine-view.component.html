@@ -1,0 +1,19 @@
+<section>
+  <div class="container">
+    <div class="actions-table">
+      <div class="buttons-table">
+        <button mat-flat-button style="margin-left:10px" (click)="openAddForm()">Add Product</button>
+      </div>
+      <div class="data-table">
+        <button mat-icon-button (click)="beforePage()" style="margin: 5px"><mat-icon>arrow_back_ios</mat-icon></button>
+        <button mat-icon-button (click)="nextPage()" style="margin: 5px"><mat-icon>arrow_forward_ios</mat-icon></button>
+        <span>Current Page: {{pageableData.currentPage + 1}} of {{pageableData.totalPages}}</span>
+        <span>Total Elements: {{pageableData.totalElements}}</span>
+      </div>
+
+    </div>
+    <app-table [products2]="products">
+    </app-table>
+
+  </div>
+</section>
