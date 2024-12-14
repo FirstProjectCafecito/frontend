@@ -1,0 +1,24 @@
+<mat-toolbar style="height: 5rem" class="mat-elevation-z3">
+  <button mat-icon-button (click)="drawer.toggle()" ><mat-icon>menu</mat-icon></button>
+  <span>SearchEngine</span>
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="search">
+      <mat-label>Search</mat-label>
+      <input #searchInput matInput type="search" placeholder="Product...">
+    </mat-form-field>
+  </div>
+  <span class="spacer"></span>
+  <button [routerLink]="'basic'" mat-button>Table Products</button>
+</mat-toolbar>
+<mat-drawer-container  autosize>
+  <mat-drawer #drawer mode="push"  class="full-drawer" opened="false" position="start" style="min-width: 200px">
+    <mat-nav-list>
+      <mat-list-item>
+        <button [routerLink]="'basic'" mat-button>Table Products</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 640px">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
